@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>Orders</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
     <table>
         <tr>
+          <th>Order ID</th>
           <th>Product ID</th>
-          <th>Product Code</th>
-          <th>Product Name</th>
-          <th>Category ID</th>
+          <th>User ID</th>
           <th>Action</th>
         </tr>
         
+        <% for (var i = 0; i < orders.length; i++) { %>
         <tr>
-            <td><%= product.product_id %></td>
-            <td><%= product.product_code %></td>
-            <td><%= product.product_name %></td>
-            <td><%= product.category_id %></td>
-          <td>
-            <a href="http://localhost:5500/product/update/<%= product.product_id %>">Edit</a>
-            <a href="http://localhost:5500/product/delete/<%= product.product_id %>">Delete</a>
-          </td>
+            <td><%= orders[i].order_id %></td>
+            <td><%= orders[i].product_id %></td>
+            <td><%= orders[i].user_id %></td>
+            <td>
+                <a href="http://localhost:5500/orders/update/<%= orders[i].order_id %>">Edit</a>
+                <a href="http://localhost:5500/orders/delete/<%= orders[i].order_id %>">Delete</a>
+            </td>
         </tr>
+        <% } %> 
     </table>
-    <a href="http://localhost:5500/products">Back</a>
+    <a href="http://localhost:5500/orders/create">Create Order</a>
 </body>
 </html>
