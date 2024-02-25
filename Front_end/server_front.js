@@ -48,7 +48,7 @@ app.get("/categories/:id", async (req, res) => {
     }
 });
 
-app.get("/orders/create", async (req, res) => {
+app.get("/order/create", async (req, res) => {
     try {
     res.render("orders/create");
 } catch(err) {
@@ -64,7 +64,7 @@ app.get("/categories/create", async (req, res) => {
 }   
 });
 
-app.post('/orders/create', async (req, res) => {
+app.post('/order/create', async (req, res) => {
     try {
         const data = {
             orders_id: req.body.orders_id,
