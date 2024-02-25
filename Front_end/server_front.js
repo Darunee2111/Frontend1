@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const axios = require('axios'); // ย้าย import มาที่นี่
+const axios = require('axios');
 
 const app = express();
 const base_url = "http://localhost:3000";
@@ -14,7 +14,7 @@ app.use(express.static(__dirname + "/public"));
 
 app.get("/orders", async (req, res) => {
     try {
-        const response = await axios.get(base_url + "/orders"); // แก้ URL ให้ถูกต้อง
+        const response = await axios.get("http://localhost:3000/orders/");
         res.render("orders/viewAll", { orders: response.data });
     } catch(err) {
         res.status(500).send(err);
@@ -23,7 +23,7 @@ app.get("/orders", async (req, res) => {
 
 app.get("/categories", async (req, res) => {
     try {
-        const response = await axios.get(base_url + "/categories"); // แก้ URL ให้ถูกต้อง
+        const response = await axios.get("http://localhost:3000/categories/");
         res.render("categories/viewAll", { categories: response.data });
     } catch(err) {
         res.status(500).send(err);
@@ -71,8 +71,8 @@ app.post('/orders/create', async (req, res) => {
             products_id: req.body.products_id,
             user_id: req.body.user_id
         };
-        await axios.post(base_url + '/orders', data);
-        res.redirect('/orders');
+        await axios.post(base_url + '/orders/', data); 
+        res.redirect('/orders/');
     } catch (error) {
         res.status(500).send(error);
     }
@@ -84,12 +84,13 @@ app.post('/categories/create', async (req, res) => {
             category_id: req.body.category_id,
             category_name: req.body.category_name,
         };
-        await axios.post(base_url + '/categories', data);
+        await axios.post(base_url + '/categories/', data); 
         res.redirect('/categories/');
     } catch (error) {
         res.status(500).send(error);
     }
 });
+
 
 app.get("/orders/update/:id", async (req, res) => {
     try {         
@@ -116,7 +117,7 @@ app.post("/orders/update/:id", async (req, res) => {
             products_id: req.body.products_id,
             user_id: req.body.user_id
         };
-        await axios.put(base_url + '/orders/' + req.params.id, data); // ใช้ axios.put แทน axios.post
+        await axios.put(base_url + '/orders/' + req.params.id, data); 
         res.redirect('/orders/');
     } catch (error) {
         res.status(500).send(error);
@@ -129,7 +130,7 @@ app.post("/categories/update/:id", async (req, res) => {
             category_id: req.body.category_id,
             category_name: req.body.category_name,
         };
-        await axios.put(base_url + '/categories/' + req.params.id, data); // ใช้ axios.put แทน axios.post
+        await axios.put(base_url + '/categories/' + req.params.id, data); 
         res.redirect('/categories/');
     } catch (error) {
         res.status(500).send(error);
