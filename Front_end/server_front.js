@@ -50,18 +50,18 @@ app.get("/categories/:id", async (req, res) => {
 
 app.get("/order/create", async (req, res) => {
     try {
-    res.render("orders/create");
-} catch(err) {
-    res.status(500).send(err)
-}   
+        res.render("orders/create");
+    } catch(err) {
+        res.status(500).send(err)
+    }   
 });
 
-app.get("/categories/create", async (req, res) => {
+app.get("/categorie/create", async (req, res) => {
     try {
-    res.render("categories/create");
-} catch(err) {
-    res.status(500).send(err)
-}   
+        res.render("categories/create");
+    } catch(err) {
+        res.status(500).send(err)
+    }   
 });
 
 app.post('/order/create', async (req, res) => {
@@ -78,7 +78,7 @@ app.post('/order/create', async (req, res) => {
     }
 });
 
-app.post('/categories/create', async (req, res) => {
+app.post('/categorie/create', async (req, res) => {
     try {
         const data = {
             category_id: req.body.category_id,
@@ -90,6 +90,7 @@ app.post('/categories/create', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
 
 
 app.get("/orders/update/:id", async (req, res) => {
