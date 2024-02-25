@@ -17,12 +17,12 @@
         
         <% for (var i = 0; i < orders.length; i++) { %>
         <tr>
-            <td><%= orders[i].order_id %></td>
-            <td><%= orders[i].product_id %></td>
+            <td><%= orders[i].orders_id %></td>
+            <td><%= orders[i].products_id %></td>
             <td><%= orders[i].user_id %></td>
             <td>
-                <a href="http://localhost:5500/orders/update/<%= orders[i].order_id %>">Edit</a>
-                <a href="http://localhost:5500/orders/delete/<%= orders[i].order_id %>">Delete</a>
+                <a href="http://localhost:5500/orders/update/<%= orders[i].orders_id %>">Edit</a>
+                <a href="http://localhost:5500/orders/delete/<%= orders[i].orders_id %>">Delete</a>
             </td>
         </tr>
         <% } %> 
