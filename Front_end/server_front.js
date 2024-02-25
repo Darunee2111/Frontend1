@@ -72,7 +72,7 @@ app.post('/orders/create', async (req, res) => {
             user_id: req.body.user_id
         };
         await axios.post(base_url + '/orders', data);
-        res.redirect('/orders/');
+        res.redirect('/orders');
     } catch (error) {
         res.status(500).send(error);
     }
@@ -127,7 +127,7 @@ app.post("/categories/update/:id", async (req, res) => {
     try {
         const data = {
             category_id: req.body.category_id,
-            category_name: req.category_name,
+            category_name: req.body.category_name,
         };
         await axios.put(base_url + '/categories/' + req.params.id, data); // ใช้ axios.put แทน axios.post
         res.redirect('/categories/');
