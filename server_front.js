@@ -100,7 +100,7 @@ app.use(express.static(__dirname + "/public"));
 //get product all
 app.get("/products" , async (req,res) => {
     try {
-        const response = await axios.get("http://localhost:3000/products/");
+        const response = await axios.get(base_url + "/products");
         const response2 = await axios.get(base_url + "/categories");
         // console.log(response2);
     res.render("products/viewAll" , { product : response.data ,categories : response2.data });
@@ -193,7 +193,7 @@ app.get("/product/delete/:id" , async (req,res) => {
 /////////////////////User////////////////////////////////
 app.get("/users" , async (req,res) => {
     try {
-        const response = await axios.get("http://localhost:3000/users/");
+        const response = await axios.get(base_url + "/users");
     res.render("User/usersAll" , { users : response.data });
     } catch(err) {
         res.status(500).send(err);
@@ -272,9 +272,9 @@ app.get("/users/delete/:id" , async (req,res) => {
 
 app.get("/orders", async (req, res) => {
     try {
-        const response = await axios.get("http://localhost:3000/orders/");
-        const resProducts = await axios.get("http://localhost:3000/products/");
-        const response2 = await axios.get("http://localhost:3000/users/");
+        const response = await axios.get(base_url + "/orders");
+        const resProducts = await axios.get(base_url + "/products");
+        const response2 = await axios.get(base_url + "/users");
         
         res.render("orders/ordersAll", { 
             orders: response.data, 
@@ -357,7 +357,7 @@ app.get("/orders/delete/:id", async (req, res) => {
 
 app.get("/categories", async (req, res) => {
     try {
-        const response = await axios.get("http://localhost:3000/categories/");
+        const response = await axios.get(base_url + "/categories");
         res.render("categories/categoriesAll", { categories: response.data });
     } catch(err) {
         res.status(500).send(err);
