@@ -8,12 +8,12 @@ const app = express();
 //const base_url = "http://localhost:3000"
 const base_url = "http://node59839-env-3292891.proen.app.ruk-com.cloud";
 
-app.set("views" , path.join(__dirname , "/public/views"))
-app.set("view engine" , "ejs")
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended : false}))
+app.set("views" , path.join(__dirname , "/public/views"));
+app.set("view engine" , "ejs");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended : false}));
 
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/public"));
 
 
 /////////////////////Product////////////////////////////////
@@ -100,37 +100,37 @@ app.use(express.static(__dirname + "/public"))
 //get product all
 app.get("/products" , async (req,res) => {
     try {
-        const response = await axios.get("http://localhost:3000/products/")
-        const response2 = await axios.get(base_url + "/categories")
+        const response = await axios.get("http://localhost:3000/products/");
+        const response2 = await axios.get(base_url + "/categories");
         // console.log(response2);
-    res.render("products/viewAll" , { product : response.data ,categories : response2.data })
+    res.render("products/viewAll" , { product : response.data ,categories : response2.data });
     
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }  
-})
+});
 
 //get product by id
 app.get("/product/:id" , async (req,res) => {
     try {
-        const response = await axios.get(base_url + "/products/" + req.params.id)
+        const response = await axios.get(base_url + "/products/" + req.params.id);
         
-    res.render("products/view" , { product : response.data })
+    res.render("products/view" , { product : response.data });
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }
     
-})
+});
 
 //create product
 app.get("/product_create" , async (req,res) => {
     try {
-        const categories = await axios.get(base_url + "/categories/") 
-    res.render("products/create" , {categories : categories.data})
+        const categories = await axios.get(base_url + "/categories/");
+    res.render("products/create" , {categories : categories.data});
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }    
-})
+});
 
 //create product up to front end
 app.post("/product_create" , async (req,res) => {
@@ -140,24 +140,24 @@ app.post("/product_create" , async (req,res) => {
             category_id : req.body.category_id,
             unit : req.body.unit,
             price : req.body.price}
-        await axios.post(base_url + "/products/"  , data )
-        res.redirect("/products/")
+        await axios.post(base_url + "/products/"  , data );
+        res.redirect("/products/");
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }
     
-})
+});
 
 //update/edit product
 app.get("/product/update/:id" , async (req,res) => {
     try {         
-        const response = await axios.get(base_url + "/products/" + req.params.id)
-        const categories = await axios.get(base_url + "/categories/") 
-        res.render("products/update" ,{ product : response.data ,categories : categories.data })
+        const response = await axios.get(base_url + "/products/" + req.params.id);
+        const categories = await axios.get(base_url + "/categories/");
+        res.render("products/update" ,{ product : response.data ,categories : categories.data });
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }    
-})
+});
 
 //update/edit product up to front end
 app.post("/product/update/:id" , async (req,res) => {
@@ -167,101 +167,101 @@ app.post("/product/update/:id" , async (req,res) => {
             category_id : req.body.category_id,
             unit : req.body.unit,
             price : req.body.price}
-        await axios.put(base_url + "/products/" + req.params.id, data )
-        res.redirect("/products/")
+        await axios.put(base_url + "/products/" + req.params.id, data );
+        res.redirect("/products/");
 
 
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }
     
-})
+});
 
 app.get("/product/delete/:id" , async (req,res) => {
     try{
-        await axios.delete(base_url + "/products/" + req.params.id)
-        res.redirect("/products")
+        await axios.delete(base_url + "/products/" + req.params.id);
+        res.redirect("/products");
     } catch(err){
-        res.status(500).send(err)
+        res.status(500).send(err);
     }
 
-})
+});
 /////////////////////Product////////////////////////////////
 
 /////////////////////User////////////////////////////////
 app.get("/users" , async (req,res) => {
     try {
-        const response = await axios.get("http://localhost:3000/users/")
-    res.render("User/usersAll" , { users : response.data })
+        const response = await axios.get("http://localhost:3000/users/");
+    res.render("User/usersAll" , { users : response.data });
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }  
-})
+});
 
 app.get("/users/:id" , async (req,res) => {
     try {
-        const response = await axios.get(base_url + "/users/" + req.params.id)
-    res.render("User/user" , { user : response.data })
+        const response = await axios.get(base_url + "/users/" + req.params.id);
+    res.render("User/user" , { user : response.data });
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }
     
-})
+});
 
 app.get("/user_create" , async (req,res) => {
     try {
-    res.render("User/create")
+    res.render("User/create");
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }    
-})
+});
 
 app.post("/user_create" , async (req,res) => {
     try {
         const data = { user_name : req.body.user_name ,
             email : req.body.email ,
             password : req.body.password}
-        await axios.post(base_url + "/users/"  , data )
-        res.redirect("/users/")
+        await axios.post(base_url + "/users/"  , data );
+        res.redirect("/users/");
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }
     
-})
+});
 
 app.get("/users/update/:id" , async (req,res) => {
     try {         
-        const response = await axios.get(base_url + "/users/" + req.params.id)
-    res.render("User/update" ,{ users : response.data })
+        const response = await axios.get(base_url + "/users/" + req.params.id);
+    res.render("User/update" ,{ users : response.data });
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }    
-})
+});
 
 app.post("/users/update/:id" , async (req,res) => {
     try {
         const data = { user_name : req.body.user_name ,
             email : req.body.email ,
             password : req.body.password}
-        await axios.put(base_url + "/users/" + req.params.id, data )
-        res.redirect("/users/")
+        await axios.put(base_url + "/users/" + req.params.id, data );
+        res.redirect("/users/");
 
 
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }
     
-})
+});
 
 app.get("/users/delete/:id" , async (req,res) => {
     try{
-        await axios.delete(base_url + "/users/" + req.params.id)
-        res.redirect("/users")
+        await axios.delete(base_url + "/users/" + req.params.id);
+        res.redirect("/users");
     } catch(err){
-        res.status(500).send(err)
+        res.status(500).send(err);
     }
 
-})
+});
 /////////////////////User////////////////////////////////
 
 ///////////////////////////orders//////////////////////////////
@@ -295,7 +295,7 @@ app.get("/order/create", async (req, res) => {
     try {
     res.render("orders/create");
 } catch(err) {
-    res.status(500).send(err)
+    res.status(500).send(err);
 }   
 });
 
@@ -303,7 +303,7 @@ app.post('/order/create', async (req, res) => {
     try {
 
         // TODO => convert string to json format
-        const productsJSON = req.body.products_id.split(',').map(Number)
+        const productsJSON = req.body.products_id.split(',').map(Number);
         const data = {
             products_id: productsJSON,
             user_id: req.body.user_id
@@ -373,7 +373,7 @@ app.get("/categorie/create", async (req, res) => {
     try {
         res.render("categories/create");
     } catch(err) {
-        res.status(500).send(err)
+        res.status(500).send(err);
     }   
 });
 
