@@ -422,6 +422,6 @@ app.get("/categories/delete/:id", async (req, res) => {
 
 ///////////////////////////categorie/////////////////////////////v
 
-app.listen(5500 , () => {
-    console.log("Server start on port 5500")
+app.listen(8888 , () => {
+    console.log("Server start on port 8888")
 })
