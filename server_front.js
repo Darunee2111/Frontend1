@@ -139,7 +139,8 @@ app.post("/product_create" , async (req,res) => {
             product_name : req.body.product_name ,
             category_id : req.body.category_id,
             unit : req.body.unit,
-            price : req.body.price}
+            price : req.body.price
+        };
         await axios.post(base_url + "/products/"  , data );
         res.redirect("/products/");
     } catch(err) {
@@ -166,7 +167,8 @@ app.post("/product/update/:id" , async (req,res) => {
             product_name : req.body.product_name ,
             category_id : req.body.category_id,
             unit : req.body.unit,
-            price : req.body.price}
+            price : req.body.price
+        };
         await axios.put(base_url + "/products/" + req.params.id, data );
         res.redirect("/products/");
 
@@ -220,7 +222,8 @@ app.post("/user_create" , async (req,res) => {
     try {
         const data = { user_name : req.body.user_name ,
             email : req.body.email ,
-            password : req.body.password}
+            password : req.body.password
+        };
         await axios.post(base_url + "/users/"  , data );
         res.redirect("/users/");
     } catch(err) {
@@ -242,7 +245,8 @@ app.post("/users/update/:id" , async (req,res) => {
     try {
         const data = { user_name : req.body.user_name ,
             email : req.body.email ,
-            password : req.body.password}
+            password : req.body.password
+        };
         await axios.put(base_url + "/users/" + req.params.id, data );
         res.redirect("/users/");
 
@@ -269,7 +273,7 @@ app.get("/users/delete/:id" , async (req,res) => {
 app.get("/orders", async (req, res) => {
     try {
         const response = await axios.get("http://localhost:3000/orders/");
-        const resProducts = await axios.get("http://localhost:3000/products/")
+        const resProducts = await axios.get("http://localhost:3000/products/");
         const response2 = await axios.get("http://localhost:3000/users/");
         
         res.render("orders/ordersAll", { 
