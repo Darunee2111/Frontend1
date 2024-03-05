@@ -362,7 +362,7 @@ app.get("/orders/delete/:id", async (req, res) => {
 app.get("/categories", async (req, res) => {
     try {
         //const response = await axios.get("http://localhost:3000/categories/");
-        const response2 = await axios.get(base_url + "/categories")
+        const response = await axios.get(base_url + "/categories")
         res.render("categories/categoriesAll", { categories: response.data });
     } catch(err) {
         res.status(500).send(err);
