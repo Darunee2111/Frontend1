@@ -62,14 +62,14 @@
                 %>
                 <td><%= userName %></td>
                 <td>
-                    <a href="http://localhost:5500/orders/<%= orders[i].orders_id %>">View</a>
-                    <a href="http://localhost:5500/orders/update/<%= orders[i].orders_id %>">Edit</a>
-                    <a href="http://localhost:5500/orders/delete/<%= orders[i].orders_id %>">Delete</a>
+                    <a href="/orders/<%= orders[i].orders_id %>">View</a>
+                    <a href="/orders/update/<%= orders[i].orders_id %>">Edit</a>
+                    <a href="/orders/delete/<%= orders[i].orders_id %>">Delete</a>
                 </td>
             </tr>
             <% } %>
     </table>
-    <a href="http://localhost:5500/order/create">Create</a>
+    <a href="/order/create">Create</a>
 </body>
 
 </html>
