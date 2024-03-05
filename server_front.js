@@ -5,7 +5,7 @@ const path = require('path');
 const { env } = require('process');
 const app = express();
 
-const base_url = "http://10.104.15.113:3001"
+const base_url = "http://10.104.15.113:3000"
 //const base_url = "http://node59932-batshopp.proen.app.ruk-com.cloud:11956"
 
 app.set("views" , path.join(__dirname , "/public/views"))
@@ -17,6 +17,7 @@ app.use(express.static(__dirname + "/public"))
 
 
 /////////////////////Product////////////////////////////////
+
 
 //get product all
 app.get("/products" , async (req,res) => {
