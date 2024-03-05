@@ -5,9 +5,7 @@ const path = require('path');
 const { env } = require('process');
 const app = express();
 
-const base_url = "http://node59923-test12.proen.app.ruk-com.cloud";
-//const base_url = "http://localhost:3000";
-
+const base_url = "http://localhost:3000"
 
 app.set("views" , path.join(__dirname , "/public/views"))
 app.set("view engine" , "ejs")
@@ -101,8 +99,7 @@ app.use(express.static(__dirname + "/public"))
 //get product all
 app.get("/products" , async (req,res) => {
     try {
-        //const response = await axios.get("http://localhost:3000/products/")
-        const response = await axios.get(base_url + '/products');
+        const response = await axios.get("http://localhost:3000/products/")
         const response2 = await axios.get(base_url + "/categories")
         // console.log(response2);
     res.render("products/viewAll" , { product : response.data ,categories : response2.data })
@@ -115,7 +112,7 @@ app.get("/products" , async (req,res) => {
 //get product by id
 app.get("/product/:id" , async (req,res) => {
     try {
-        const response = await axios.get(base_url + "/products" + req.params.id)
+        const response = await axios.get(base_url + "/products/" + req.params.id)
         
     res.render("products/view" , { product : response.data })
     } catch(err) {
@@ -127,7 +124,7 @@ app.get("/product/:id" , async (req,res) => {
 //create product
 app.get("/product_create" , async (req,res) => {
     try {
-        const categories = await axios.get(base_url + "/categories") 
+        const categories = await axios.get(base_url + "/categories/") 
     res.render("products/create" , {categories : categories.data})
     } catch(err) {
         res.status(500).send(err)
@@ -142,8 +139,8 @@ app.post("/product_create" , async (req,res) => {
             category_id : req.body.category_id,
             unit : req.body.unit,
             price : req.body.price}
-        await axios.post(base_url + "/products"  , data )
-        res.redirect("/products")
+        await axios.post(base_url + "/products/"  , data )
+        res.redirect("/products/")
     } catch(err) {
         res.status(500).send(err)
     }
@@ -153,8 +150,8 @@ app.post("/product_create" , async (req,res) => {
 //update/edit product
 app.get("/product/update/:id" , async (req,res) => {
     try {         
-        const response = await axios.get(base_url + "/products" + req.params.id)
-        const categories = await axios.get(base_url + "/categories") 
+        const response = await axios.get(base_url + "/products/" + req.params.id)
+        const categories = await axios.get(base_url + "/categories/") 
         res.render("products/update" ,{ product : response.data ,categories : categories.data })
     } catch(err) {
         res.status(500).send(err)
@@ -169,8 +166,8 @@ app.post("/product/update/:id" , async (req,res) => {
             category_id : req.body.category_id,
             unit : req.body.unit,
             price : req.body.price}
-        await axios.put(base_url + "/products" + req.params.id, data )
-        res.redirect("/products")
+        await axios.put(base_url + "/products/" + req.params.id, data )
+        res.redirect("/products/")
 
 
     } catch(err) {
@@ -181,7 +178,7 @@ app.post("/product/update/:id" , async (req,res) => {
 
 app.get("/product/delete/:id" , async (req,res) => {
     try{
-        await axios.delete(base_url + "/products" + req.params.id)
+        await axios.delete(base_url + "/products/" + req.params.id)
         res.redirect("/products")
     } catch(err){
         res.status(500).send(err)
@@ -193,8 +190,7 @@ app.get("/product/delete/:id" , async (req,res) => {
 /////////////////////User////////////////////////////////
 app.get("/users" , async (req,res) => {
     try {
-        //const response = await axios.get("http://localhost:3000/users/")
-        const response = await axios.get(base_url + '/users');
+        const response = await axios.get("http://localhost:3000/users/")
     res.render("User/usersAll" , { users : response.data })
     } catch(err) {
         res.status(500).send(err)
@@ -203,7 +199,7 @@ app.get("/users" , async (req,res) => {
 
 app.get("/users/:id" , async (req,res) => {
     try {
-        const response = await axios.get(base_url + "/users" + req.params.id)
+        const response = await axios.get(base_url + "/users/" + req.params.id)
     res.render("User/user" , { user : response.data })
     } catch(err) {
         res.status(500).send(err)
@@ -224,8 +220,8 @@ app.post("/user_create" , async (req,res) => {
         const data = { user_name : req.body.user_name ,
             email : req.body.email ,
             password : req.body.password}
-        await axios.post(base_url + "/users"  , data )
-        res.redirect("/users")
+        await axios.post(base_url + "/users/"  , data )
+        res.redirect("/users/")
     } catch(err) {
         res.status(500).send(err)
     }
@@ -234,7 +230,7 @@ app.post("/user_create" , async (req,res) => {
 
 app.get("/users/update/:id" , async (req,res) => {
     try {         
-        const response = await axios.get(base_url + "/users" + req.params.id)
+        const response = await axios.get(base_url + "/users/" + req.params.id)
     res.render("User/update" ,{ users : response.data })
     } catch(err) {
         res.status(500).send(err)
@@ -246,8 +242,8 @@ app.post("/users/update/:id" , async (req,res) => {
         const data = { user_name : req.body.user_name ,
             email : req.body.email ,
             password : req.body.password}
-        await axios.put(base_url + "/users" + req.params.id, data )
-        res.redirect("/users")
+        await axios.put(base_url + "/users/" + req.params.id, data )
+        res.redirect("/users/")
 
 
     } catch(err) {
@@ -258,7 +254,7 @@ app.post("/users/update/:id" , async (req,res) => {
 
 app.get("/users/delete/:id" , async (req,res) => {
     try{
-        await axios.delete(base_url + "/users" + req.params.id)
+        await axios.delete(base_url + "/users/" + req.params.id)
         res.redirect("/users")
     } catch(err){
         res.status(500).send(err)
@@ -271,14 +267,9 @@ app.get("/users/delete/:id" , async (req,res) => {
 
 app.get("/orders", async (req, res) => {
     try {
-        //const response = await axios.get("http://localhost:3000/orders/");
-        //const resProducts = await axios.get("http://localhost:3000/products/")
-        //const response2 = await axios.get("http://localhost:3000/users/");
-        const response = await axios.get(base_url + '/orders');
-        const resProducts = await axios.get(base_url + '/products');
-        const response2 = await axios.get(base_url + '/users');
-        
-
+        const response = await axios.get("http://localhost:3000/orders/");
+        const resProducts = await axios.get("http://localhost:3000/products/")
+        const response2 = await axios.get("http://localhost:3000/users/");
         
         res.render("orders/ordersAll", { 
             orders: response.data, 
@@ -292,7 +283,7 @@ app.get("/orders", async (req, res) => {
 
 app.get("/orders/:id", async (req, res) => {
     try {
-        const response = await axios.get(base_url + "/orders" + req.params.id);
+        const response = await axios.get(base_url + "/orders/" + req.params.id);
         res.render("orders/orders", { orders: response.data });
     } catch(err) {
         res.status(500).send(err);
@@ -317,8 +308,8 @@ app.post('/order/create', async (req, res) => {
             user_id: req.body.user_id
         };
         // console.log(data);
-        await axios.post(base_url + '/orders', data); 
-        res.redirect('/orders');
+        await axios.post(base_url + '/orders/', data); 
+        res.redirect('/orders/');
     } catch (error) {
         res.status(500).send(error);
     }
@@ -326,7 +317,7 @@ app.post('/order/create', async (req, res) => {
 
 app.get("/orders/update/:id", async (req, res) => {
     try {         
-        const response = await axios.get(base_url + "/orders" + req.params.id);
+        const response = await axios.get(base_url + "/orders/" + req.params.id);
         res.render("orders/update", { orders: response.data });
     } catch(err) {
         res.status(500).send(err);
@@ -340,8 +331,8 @@ app.post("/orders/update/:id", async (req, res) => {
             products_id: req.body.products_id,
             user_id: req.body.user_id
         };
-        await axios.put(base_url + '/orders' + req.params.id, data); 
-        res.redirect('/orders');
+        await axios.put(base_url + '/orders/' + req.params.id, data); 
+        res.redirect('/orders/');
     } catch (error) {
         res.status(500).send(error);
     }
@@ -349,7 +340,7 @@ app.post("/orders/update/:id", async (req, res) => {
 
 app.get("/orders/delete/:id", async (req, res) => {
     try {
-        await axios.delete(base_url + "/orders" + req.params.id);
+        await axios.delete(base_url + "/orders/" + req.params.id);
         res.redirect("/orders");
     } catch(err) {
         res.status(500).send(err);
@@ -361,10 +352,7 @@ app.get("/orders/delete/:id", async (req, res) => {
 
 app.get("/categories", async (req, res) => {
     try {
-        //const response = await axios.get("http://localhost:3000/categories/");
-        const response = await axios.get(base_url +'/categories');
-        
-
+        const response = await axios.get("http://localhost:3000/categories/");
         res.render("categories/categoriesAll", { categories: response.data });
     } catch(err) {
         res.status(500).send(err);
@@ -373,7 +361,7 @@ app.get("/categories", async (req, res) => {
 
 app.get("/categories/:id", async (req, res) => {
     try {
-        const response = await axios.get(base_url + "/categories" + req.params.id);
+        const response = await axios.get(base_url + "/categories/" + req.params.id);
         res.render("categories/categories", { categories: response.data });
     } catch(err) {
         res.status(500).send(err);
@@ -394,8 +382,8 @@ app.post('/categorie/create', async (req, res) => {
             category_id: req.body.categories_id,
             category_name: req.body.categories_name,
         };
-        await axios.post(base_url + '/categories', data); 
-        res.redirect('/categories');
+        await axios.post(base_url + '/categories/', data); 
+        res.redirect('/categories/');
     } catch (error) {
         res.status(500).send(error);
     }
@@ -403,7 +391,7 @@ app.post('/categorie/create', async (req, res) => {
 
 app.get("/categories/update/:id", async (req, res) => {
     try {         
-        const response = await axios.get(base_url + "/categories" + req.params.id);
+        const response = await axios.get(base_url + "/categories/" + req.params.id);
         res.render("categories/update", { categories: response.data });
     } catch(err) {
         res.status(500).send(err);
@@ -415,8 +403,8 @@ app.post("/categories/update/:id", async (req, res) => {
         const data = {
             category_name: req.body.category_name,
         };
-        await axios.put(base_url + '/categories' + req.params.id, data); 
-        res.redirect('/categories');
+        await axios.put(base_url + '/categories/' + req.params.id, data); 
+        res.redirect('/categories/');
     } catch (error) {
         res.status(500).send(error);
     }
@@ -424,7 +412,7 @@ app.post("/categories/update/:id", async (req, res) => {
 
 app.get("/categories/delete/:id", async (req, res) => {
     try {
-        await axios.delete(base_url + "/categories" + req.params.id);
+        await axios.delete(base_url + "/categories/" + req.params.id);
         res.redirect("/categories");
     } catch(err) {
         res.status(500).send(err);
@@ -433,6 +421,6 @@ app.get("/categories/delete/:id", async (req, res) => {
 
 ///////////////////////////categorie/////////////////////////////v
 
-app.listen(3002 , () => {
-    console.log("Server start on port 3001")
+app.listen(5500 , () => {
+    console.log("Server start on port 5500")
 })
