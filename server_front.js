@@ -191,7 +191,8 @@ app.get("/product/delete/:id" , async (req,res) => {
 /////////////////////User////////////////////////////////
 app.get("/users" , async (req,res) => {
     try {
-        const response = await axios.get("http://localhost:3000/users/")
+        //const response = await axios.get("http://localhost:3000/users/")
+        const response = await axios.get(base_url + '/users');
     res.render("User/usersAll" , { users : response.data })
     } catch(err) {
         res.status(500).send(err)
