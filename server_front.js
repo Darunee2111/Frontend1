@@ -5,7 +5,7 @@ const path = require('path');
 const { env } = require('process');
 const app = express();
 
-const base_url = "http://localhost:3000"
+const base_url = "10.104.15.113:3000"
 //const base_url = "http://batshopp.proen.app.ruk-com.cloud/"
 
 app.set("views" , path.join(__dirname , "/public/views"))
