@@ -5,7 +5,7 @@ const path = require('path');
 const { env } = require('process');
 const app = express();
 
-const base_url = "http://node59919-batshopp.proen.app.ruk-com.cloud";
+const base_url = "http://node59923-test12.proen.app.ruk-com.cloud";
 
 
 
