@@ -98,7 +98,7 @@ app.use(express.static(__dirname + "/public"))
 // })
 
 //get product all
-app.get("/" , async (req,res) => {
+app.get("/products" , async (req,res) => {
     try {
         //const response = await axios.get("http://localhost:3000/products/")
         const response2 = await axios.get(base_url + "/categories")
