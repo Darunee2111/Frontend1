@@ -5,8 +5,8 @@ const path = require('path');
 const { env } = require('process');
 const app = express();
 
-//const base_url = "http://localhost:3000"
-const base_url = "http://batshopp.proen.app.ruk-com.cloud/"
+const base_url = "http://localhost:3000"
+//const base_url = "http://batshopp.proen.app.ruk-com.cloud/"
 
 app.set("views" , path.join(__dirname , "/public/views"))
 app.set("view engine" , "ejs")
@@ -98,7 +98,7 @@ app.use(express.static(__dirname + "/public"))
 // })
 
 //get product all
-app.get("/products" , async (req,res) => {
+app.get("/" , async (req,res) => {
     try {
         //const response = await axios.get("http://localhost:3000/products/")
         const response2 = await axios.get(base_url + "/categories")
