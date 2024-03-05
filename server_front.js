@@ -433,6 +433,6 @@ app.get("/categories/delete/:id", async (req, res) => {
 
 ///////////////////////////categorie/////////////////////////////v
 
-app.listen(3001 , () => {
-    console.log("Server start on port 3100")
+app.listen(3002 , () => {
+    console.log("Server start on port 3001")
 })
