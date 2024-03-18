@@ -15,9 +15,7 @@ app.use(bodyParser.urlencoded({ extended : false}))
 
 app.use(express.static(__dirname + "/public"))
 
-
 /////////////////////Product////////////////////////////////
-
 
 //get product all
 app.get("/products" , async (req,res) => {
@@ -189,7 +187,6 @@ app.get("/users/delete/:id" , async (req,res) => {
 /////////////////////User////////////////////////////////
 
 ///////////////////////////orders//////////////////////////////
-
 app.get("/orders", async (req, res) => {
     try {
        // const response = await axios.get("http://localhost:3000/orders/");
@@ -280,7 +277,6 @@ app.get("/orders/delete/:id", async (req, res) => {
 ///////////////////////////orders//////////////////////////////
 
 ///////////////////////////categorie/////////////////////////////
-
 app.get("/categories", async (req, res) => {
     try {
         //const response = await axios.get("http://localhost:3000/categories/");
@@ -330,6 +326,11 @@ app.get("/categories/update/:id", async (req, res) => {
     }
 });
 
+
+
+
+
+
 app.post("/categories/update/:id", async (req, res) => {
     try {
         const data = {
@@ -350,9 +351,7 @@ app.get("/categories/delete/:id", async (req, res) => {
         res.status(500).send(err);
     }
 });
-
 ///////////////////////////categorie/////////////////////////////v
-
 app.listen(5500 , () => {
     console.log("Server start on port 5500")
 })

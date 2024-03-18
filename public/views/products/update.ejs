@@ -6,12 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../css/style.css">
-
-
-
 </head>
-
-
 <body>
     <nav>
         <ul>
@@ -19,7 +14,6 @@
             <li><a href="/users">Users</a></li>
             <li><a href="/orders">Orders</a></li>
             <li><a href="/categories">Categories</a></li>
-
         </ul>
     </nav>
     <h1>UPDATE Product</h1>
@@ -41,18 +35,14 @@
                 </option>
                 <% } %>
         </select>
-
-
         <label for="unit">unit :</label>
         <input type="text" id="unit" name="unit" value="<%= product.unit %>">
 
         <label for="price">price :</label>
         <input type="text" id="price" name="price" value="<%= product.price %>">
 
-
         <input type="submit" value="Update">
         <a href="/products">Back</a>
     </form>
 </body>
-
 </html>
